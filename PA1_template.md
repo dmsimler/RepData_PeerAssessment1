@@ -136,7 +136,6 @@ Using the new dataset, we now plot the average number of steps taken across all 
 
 
 ```r
-# Now plot the interval (x-axis) vs the number of steps averaged across all days
 ggplot(intervalStepAvgsDS, aes(x=interval, y=avgSteps)) + geom_line(color="blue") +
   xlab("Interval") + ylab("Average Number of Steps Taken")
 ```
@@ -281,17 +280,20 @@ As shown above, YES the MEAN is different from the first part of the assignment 
 
 #### __Question:__*What is the impact of imputing missing data on the estimates of the total daily number of steps?*
 
-Comparing the total steps from the dataset with the missing values fixed to the original dataset, we get the following:
+Comparing the total steps calculated from the dataset with the missing values fixed to those from the original dataset, we reach the following conclusion:
 
 
 ```r
 numDifferentValues <- sum(fixedDailyStepTotalsDS$totalSteps != dailyStepTotalsDS$totalSteps)
-print(sprintf("The total daily steps in the dataset where missing values are fixed differs from the original %d times.", numDifferentValues))
+numGreaterValues <- sum(fixedDailyStepTotalsDS$totalSteps > dailyStepTotalsDS$totalSteps)
+print(sprintf("The total daily steps calculated from the dataset where missing values are fixed were greater %d times out of the %d times where they differed from the original values.", numGreaterValues, numDifferentValues))
 ```
 
 ```
-## [1] "The total daily steps in the dataset where missing values are fixed differs from the original 8 times."
+## [1] "The total daily steps calculated from the dataset where missing values are fixed were greater 8 times out of the 8 times where they differed from the original values."
 ```
+
+
 
 *****
 
